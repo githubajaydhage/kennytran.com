@@ -2,5 +2,5 @@ module.exports = {
   siteMetadata: {
     title: "kennytran.com",
   },
-  plugins: [],
+  plugins: ['gatsby-plugin-gatsby-cloud']
 };
