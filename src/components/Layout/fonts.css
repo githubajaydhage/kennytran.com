@@ -1,0 +1,18 @@
+@import url("//hello.myfonts.net/count/3d9b5c");
+  
+@font-face {
+    font-family: "BwGradual";
+    font-style: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    src: url('../../fonts/BwGradual/normal_normal_normal.woff2') format('woff2'),
+         url('../../fonts/BwGradual/normal_normal_normal.woff') format('woff');
+}
+@font-face {
+    font-family: "BwGradual";
+    font-style: normal;
+    font-weight: bold;
+    font-stretch: normal;
+    src: url('../../fonts/BwGradual/normal_normal_bold.woff2') format('woff2'),
+         url('../../fonts/BwGradual/normal_normal_bold.woff') format('woff');
+}
