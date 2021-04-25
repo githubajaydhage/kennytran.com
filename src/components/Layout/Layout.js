@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './normalize.css';
+import './fonts.css';
 const Layout = (props) => {
     return (
         <>
