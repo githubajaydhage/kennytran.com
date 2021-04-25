@@ -5,9 +5,7 @@ import PropTypes from 'prop-types';
 const Layout = (props) => {
     return (
         <>
-            <div className="layout">
-                {props.children}
-            </div>
+            <div className="layout">{props.children}</div>
         </>
     );
 };
