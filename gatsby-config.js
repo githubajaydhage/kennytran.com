@@ -4,6 +4,14 @@ module.exports = {
     },
     plugins: [
         'gatsby-plugin-gatsby-cloud',
+        {
+            resolve: 'gatsby-plugin-react-svg',
+            options: {
+                rule: {
+                    include: /svgs/,
+                },
+            },
+        },
         'gatsby-plugin-theme-ui',
         {
             resolve: 'gatsby-plugin-transition-link',
