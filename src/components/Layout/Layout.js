@@ -6,6 +6,7 @@ import { jsx } from 'theme-ui';
 import { Global } from '@emotion/react';
 
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 import './normalize.css';
 import './fonts.css';
@@ -34,6 +35,7 @@ const Layout = (props) => {
             <div className="layout">
                 <Header />
                 {props.children}
+                <Footer />
             </div>
         </>
     );

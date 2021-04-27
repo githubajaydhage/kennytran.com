@@ -33,6 +33,33 @@ export default {
         body: 1.5,
         heading: 1.15,
     },
+    forms: {
+        input: {
+            fontSize: [1, 3],
+            padding: 0,
+            paddingBottom: 2,
+            borderColor: 'text',
+            borderTop: 'none',
+            borderLeft: 'none',
+            borderRight: 'none',
+            borderRadius: 0,
+
+            '&:focus': {
+                outline: 'none',
+            },
+        },
+        textarea: {
+            padding: [2, 3],
+            marginTop: '6px',
+            fontSize: [1, 3],
+            borderColor: 'text',
+            borderRadius: 0,
+
+            '&:focus': {
+                outline: 'none',
+            },
+        },
+    },
     layout: {
         container: {
             paddingRight: ['25px', '50px', null, null, '75px', '100px'],
@@ -48,6 +75,13 @@ export default {
             fontFamily: 'heading',
             fontWeight: 'heading',
             lineHeight: 'heading',
+        },
+        capitalised: {
+            color: 'text',
+            fontSize: 1,
+            letterSpacing: '0.16em',
+            lineHeight: 1,
+            textTransform: 'uppercase',
         },
     },
     zIndices: {
