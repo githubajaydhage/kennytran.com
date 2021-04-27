@@ -83,6 +83,11 @@ export default {
             lineHeight: 1,
             textTransform: 'uppercase',
         },
+        jumbotron: {
+            fontSize: ['60px', '80px', '100px', '120px', '130px', '160px'],
+            lineHeight: '1.1',
+            whiteSpace: [null, null, null, null, 'nowrap'],
+        },
     },
     zIndices: {
         nav: '100',
