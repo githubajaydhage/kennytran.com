@@ -6,6 +6,8 @@ const Section = (props) => {
         <section
             className={'section ' + props.className}
             sx={{
+                overflow: 'hidden',
+
                 ':first-of-type': {
                     paddingTop: ['160px', '240px'],
                 },
