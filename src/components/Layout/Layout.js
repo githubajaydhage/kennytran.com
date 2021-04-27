@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import { jsx } from 'theme-ui';
 import { Global } from '@emotion/react';
 
+import Header from '../Header/Header';
+
 import './normalize.css';
 import './fonts.css';
 
@@ -29,7 +31,10 @@ const Layout = (props) => {
                     },
                 })}
             />
-            <div className="layout">{props.children}</div>
+            <div className="layout">
+                <Header />
+                {props.children}
+            </div>
         </>
     );
 };

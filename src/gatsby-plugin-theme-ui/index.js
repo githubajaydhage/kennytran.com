@@ -50,6 +50,10 @@ export default {
             lineHeight: 'heading',
         },
     },
+    zIndices: {
+        nav: '100',
+        navTrigger: '105',
+    },
     styles: {
         root: {
             color: 'text',
