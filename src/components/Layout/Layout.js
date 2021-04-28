@@ -6,7 +6,6 @@ import { jsx } from 'theme-ui';
 import { Global } from '@emotion/react';
 
 import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
 
 import './normalize.css';
 import './fonts.css';
@@ -30,12 +29,22 @@ const Layout = (props) => {
                             textDecoration: 'underline',
                         },
                     },
+                    '.tl-wrapper': {
+                        backgroundColor: `${theme.colors.background}`
+                    },
+                    '.tl-wrapper-status--entering': {
+                        position: 'fixed',
+                        top: '0',
+                        left: '0',
+                    },
+                    '.tl-wrapper-status--exiting': {
+                        marginLeft: '0!important',
+                    },
                 })}
             />
             <div className="layout">
                 <Header />
                 {props.children}
-                <Footer />
             </div>
         </>
     );

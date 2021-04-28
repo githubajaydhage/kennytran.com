@@ -1,4 +1,4 @@
-import TransitionLink from 'gatsby-plugin-transition-link';
+import TransitionLinkFadeUp from '../TransitionLinkFadeUp/TransitionLinkFadeUp';
 
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
@@ -76,12 +76,12 @@ const Nav = (props) => {
             >
                 {navItems.map((navItem, index) => (
                     <li key={index}>
-                        <TransitionLink
+                        <TransitionLinkFadeUp
                             activeClassName="is-active"
                             to={navItem.url}
                         >
                             {navItem.name}
-                        </TransitionLink>
+                        </TransitionLinkFadeUp>
                     </li>
                 ))}
             </ul>

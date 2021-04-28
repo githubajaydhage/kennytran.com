@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
+import Footer from '../components/Footer/Footer';
 import Jumbotron from '../components/Jumbotron/Jumbotron';
 import ProjectsList from '../components/ProjectsList/ProjectsList';
 import Section from '../components/Section/Section';
@@ -79,6 +80,7 @@ const PageHome = (props) => {
             <Section>
                 <Testimonials testimonials={testimonials} />
             </Section>
+            <Footer />
         </>
     );
 };
