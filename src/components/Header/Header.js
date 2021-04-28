@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import TransitionLink from 'gatsby-plugin-transition-link';
 
 /** @jsx jsx */
 import { jsx, Container } from 'theme-ui';
 
 import Nav from '../Nav/Nav';
 import NavTrigger from '../NavTrigger/NavTrigger';
+import TransitionLinkFadeUp from '../TransitionLinkFadeUp/TransitionLinkFadeUp';
 
 import SVGLogoKennyTran from '../../svgs/logo-kenny-tran.svg';
 
@@ -18,8 +18,11 @@ const Header = (props) => {
         <header
             className="header"
             sx={{
-                paddingTop: ['30px', null, '40px'],
-                paddingBottom: ['30px', null, '40px'],
+                width: '100%',
+                position: 'fixed',
+                top: ['20px', null, '40px'],
+                left: 0,
+                zIndex: 'header',
             }}
         >
             <Container
@@ -28,14 +31,16 @@ const Header = (props) => {
                     alignItems: 'center',
                 }}
             >
-                <TransitionLink to="/">
+                <TransitionLinkFadeUp
+                    to="/"
+                >
                     <SVGLogoKennyTran
                         sx={{
                             display: 'block',
                             fill: 'text',
                         }}
                     />
-                </TransitionLink>
+                </TransitionLinkFadeUp>
                 <Nav
                     navVisible={navVisible}
                     toggleNavVisible={toggleNavVisible}
