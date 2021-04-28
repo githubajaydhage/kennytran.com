@@ -4,6 +4,7 @@ module.exports = {
     },
     plugins: [
         'gatsby-plugin-gatsby-cloud',
+        'gatsby-plugin-image',
         {
             resolve: 'gatsby-plugin-react-svg',
             options: {
@@ -12,6 +13,7 @@ module.exports = {
                 },
             },
         },
+        'gatsby-plugin-sharp',
         'gatsby-plugin-theme-ui',
         {
             resolve: 'gatsby-plugin-transition-link',
@@ -19,5 +21,13 @@ module.exports = {
                 layout: require.resolve('./src/components/Layout/Layout.js'),
             },
         },
+        {
+            resolve: 'gatsby-source-filesystem',
+            options: {
+                name: 'images',
+                path: `${__dirname}/src/images`,
+            },
+        },
+        'gatsby-transformer-sharp',
     ],
 };
