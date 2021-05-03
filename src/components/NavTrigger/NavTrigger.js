@@ -1,14 +1,39 @@
 import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { CustomEase } from 'gsap/CustomEase';
 
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
 
+// Register GSAP plugins
+gsap.registerPlugin(CustomEase);
+
 const NavTrigger = (props) => {
+    const navTriggerRef = useRef(null);
+
+    useEffect(() => {
+        gsap.fromTo(
+            navTriggerRef.current,
+            {
+                opacity: '0',
+                y: '20px',
+            },
+            {
+                delay: 0.25,
+                ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
+                duration: 2,
+                opacity: '1',
+                y: '0',
+            }
+        );
+    }, []);
+
     return (
         <button
             aria-controls="menu"
             aria-expanded={props.navVisible}
             onClick={props.toggleNavVisible}
+            ref={navTriggerRef}
             sx={{
                 display: ['block', null, 'none'],
                 width: '60px',

@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import { gsap } from 'gsap';
+import CustomEase from 'gsap/CustomEase';
 
 /** @jsx jsx */
 import { jsx, Container } from 'theme-ui';
@@ -11,8 +13,25 @@ import SVGLogoKennyTran from '../../svgs/logo-kenny-tran.svg';
 
 const Header = (props) => {
     const [navVisible, setNavVisible] = useState(false);
+    const logoRef = useRef(null);
 
     const toggleNavVisible = () => setNavVisible(!navVisible);
+
+    useEffect(() => {
+        gsap.fromTo(
+            logoRef.current,
+            {
+                opacity: '0',
+                y: '20px',
+            },
+            {
+                duration: 2,
+                ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
+                opacity: '1',
+                y: '0',
+            }
+        );
+    }, []);
 
     return (
         <header
@@ -31,15 +50,15 @@ const Header = (props) => {
                     alignItems: 'center',
                 }}
             >
-                <TransitionLinkFadeUp
-                    to="/"
-                >
-                    <SVGLogoKennyTran
-                        sx={{
-                            display: 'block',
-                            fill: 'text',
-                        }}
-                    />
+                <TransitionLinkFadeUp to="/">
+                    <i ref={logoRef} sx={{ display: 'block' }}>
+                        <SVGLogoKennyTran
+                            sx={{
+                                display: 'block',
+                                fill: 'text',
+                            }}
+                        />
+                    </i>
                 </TransitionLinkFadeUp>
                 <Nav
                     navVisible={navVisible}

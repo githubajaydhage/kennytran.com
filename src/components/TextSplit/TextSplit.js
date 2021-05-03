@@ -1,9 +1,68 @@
+import { useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import { CustomEase } from 'gsap/CustomEase';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 /** @jsx jsx */
 import { jsx, Box, Container, Grid } from 'theme-ui';
 
-const TextSplit = (props) => {
+// Register GSAP plugins
+gsap.registerPlugin(CustomEase, ScrollTrigger);
+
+const TextSplit = ({ mount, ...props }) => {
+    const [ready, setReady] = useState(mount);
+    const columnLeftRef = useRef(null);
+    const columnRightRef = useRef(null);
+    const dividerRef = useRef(null);
+    const textSplitRef = useRef(null);
+
+    useEffect(() => {
+        setReady(mount);
+
+        if (mount) {
+            const timeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger: textSplitRef.current,
+                    start: 'top 75%',
+                },
+            });
+
+            timeline
+                .from(
+                    columnLeftRef.current,
+                    {
+                        duration: 2,
+                        ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
+                        y: '10%',
+                        opacity: '0',
+                    },
+                    0
+                )
+                .from(
+                    columnRightRef.current,
+                    {
+                        duration: 2,
+                        ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
+                        y: '10%',
+                        opacity: '0',
+                    },
+                    0
+                )
+                .from(
+                    dividerRef.current,
+                    {
+                        duration: 2,
+                        ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
+                        height: '0%',
+                    },
+                    0.25
+                );
+        }
+    }, [mount]);
+
     return (
         <div
+            ref={textSplitRef}
             className="text-split"
             sx={{
                 paddingTop: [6, 7],
@@ -43,6 +102,7 @@ const TextSplit = (props) => {
             >
                 <Grid columns={[1, null, 2]}>
                     <Box
+                        ref={columnLeftRef}
                         sx={{
                             paddingLeft: [5, null, '0', null, 7],
                             paddingRight: [5, null, '50px', null, 7],
@@ -58,6 +118,7 @@ const TextSplit = (props) => {
                         </ul>
                     </Box>
                     <Box
+                        ref={columnRightRef}
                         sx={{
                             paddingTop: [6, 7],
                             paddingLeft: [5, null, '50px', null, 7],
@@ -77,7 +138,7 @@ const TextSplit = (props) => {
                         </ul>
                     </Box>
                 </Grid>
-                <div className="text-split__divider"></div>
+                <div ref={dividerRef} className="text-split__divider"></div>
             </Container>
         </div>
     );

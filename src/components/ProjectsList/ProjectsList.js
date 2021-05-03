@@ -3,7 +3,7 @@ import { jsx } from 'theme-ui';
 
 import ProjectsListItem from '../ProjectsListItem/ProjectsListItem';
 
-const ProjectsList = (props) => {
+const ProjectsList = ({ mount, ...props }) => {
     return (
         <ul
             className="projects-list"
@@ -15,7 +15,7 @@ const ProjectsList = (props) => {
         >
             {props.projects.map((project, index) => (
                 <li key={index}>
-                    <ProjectsListItem id={index} {...project} />
+                    <ProjectsListItem id={index} mount={mount} {...project} />
                 </li>
             ))}
         </ul>
