@@ -1,6 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'gatsby';
 import { useForm, ValidationError } from '@formspree/react';
+import { gsap } from 'gsap';
+import { CustomEase } from 'gsap/CustomEase';
+import { SplitText } from 'gsap/SplitText';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Button from '../Button/Button';
 import SocialLinks from '../SocialLinks/SocialLinks';
@@ -8,20 +12,79 @@ import SocialLinks from '../SocialLinks/SocialLinks';
 /** @jsx jsx */
 import {
     jsx,
+    Divider,
     Box,
     Container,
-    Divider,
     Grid,
     Input,
     Textarea,
     Themed,
 } from 'theme-ui';
 
-const Footer = (props) => {
+// Register GSAP plugins
+gsap.registerPlugin(CustomEase, ScrollTrigger, SplitText);
+
+const Footer = ({ mount }) => {
+    const [ready, setReady] = useState(mount);
     const [state, handleSubmit] = useForm('xpzkwpwk', true);
+    const backgroundRef = useRef(null);
+    const contentRef = useRef(null);
+    const footerRef = useRef(null);
+    const headingRef = useRef(null);
+
+    useEffect(() => {
+        setReady(mount);
+        if (mount) {
+            const timeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger: footerRef.current,
+                    start: 'top 75%',
+                },
+            });
+
+            const headingSplit = new SplitText(headingRef.current, {
+                type: 'lines, words',
+                linesClass: 'line',
+            });
+            const headingWords = headingSplit.words;
+
+            timeline
+                .from(
+                    backgroundRef.current,
+                    {
+                        duration: 2,
+                        ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
+                        scaleY: '0',
+                        transformOrigin: 'top',
+                    },
+                    0
+                )
+                .from(
+                    headingWords,
+                    {
+                        duration: 2,
+                        ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
+                        y: '100%',
+                        opacity: '0',
+                    },
+                    0.5
+                )
+                .from(
+                    contentRef.current,
+                    {
+                        duration: 2,
+                        ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
+                        y: '10%',
+                        opacity: '0',
+                    },
+                    0.75
+                );
+        }
+    }, [mount]);
 
     return (
         <footer
+            ref={footerRef}
             className="footer"
             sx={{
                 marginTop: [7],
@@ -32,12 +95,16 @@ const Footer = (props) => {
                 h1: {
                     fontSize: [7, null, null, 8],
                     marginBottom: [5, 6],
+
+                    '.line': {
+                        overflow: 'hidden',
+                    },
                 },
 
-                '.footer__form': {
+                form: {
                     marginBottom: 6,
 
-                    '.footer__form-button': {
+                    button: {
                         marginTop: ['-25px', null, null, 0],
                         position: [null, null, null, 'absolute'],
                         bottom: [null, null, null, '-10%'],
@@ -67,13 +134,13 @@ const Footer = (props) => {
         >
             <Container>
                 <div className="footer__box">
-                    <Themed.h1>
+                    <Themed.h1 ref={headingRef}>
                         {state.succeeded
                             ? 'Thank you for your message'
                             : 'Get in touch'}
                     </Themed.h1>
-                    <div className="footer__content">
-                        <form className="footer__form" onSubmit={handleSubmit}>
+                    <div ref={contentRef} className="footer__content">
+                        <form onSubmit={handleSubmit}>
                             <Grid
                                 columns={[1, null, '1fr 1.6fr']}
                                 gap={[5, null]}
@@ -152,7 +219,6 @@ const Footer = (props) => {
                                             errors={state.errors}
                                         />
                                         <Button
-                                            className="footer__form-button"
                                             type="submit"
                                             disabled={state.submitting}
                                         >
@@ -193,7 +259,7 @@ const Footer = (props) => {
                                         <Link
                                             to="/"
                                             sx={{
-                                                variant: 'text.capitalised',
+                                                variant: 'text.nav',
                                             }}
                                         >
                                             Home
@@ -203,10 +269,20 @@ const Footer = (props) => {
                                         <Link
                                             to="/work"
                                             sx={{
-                                                variant: 'text.capitalised',
+                                                variant: 'text.nav',
                                             }}
                                         >
-                                            Profile
+                                            Work
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            to="/contact"
+                                            sx={{
+                                                variant: 'text.nav',
+                                            }}
+                                        >
+                                            Contact
                                         </Link>
                                     </li>
                                 </ul>
@@ -221,7 +297,7 @@ const Footer = (props) => {
                                         fontSize: [0, 1],
                                     }}
                                 >
-                                    Copyright &copy; {new Date().getFullYear()} Kenny Tran Co Ltd.
+                                    Copyright &copy; 2021 Kenny Tran Co Ltd.
                                     Registered in England and Wales. Company
                                     number 12716945.
                                 </p>
@@ -231,7 +307,10 @@ const Footer = (props) => {
                             <SocialLinks />
                         </Box>
                     </div>
-                    <div className="footer__background"></div>
+                    <div
+                        ref={backgroundRef}
+                        className="footer__background"
+                    ></div>
                 </div>
             </Container>
         </footer>
