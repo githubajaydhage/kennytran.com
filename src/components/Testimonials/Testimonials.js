@@ -1,4 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import { CustomEase } from 'gsap/CustomEase';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Swiper from 'swiper/bundle';
 
 /** @jsx jsx */
@@ -9,24 +12,67 @@ import 'swiper/swiper-bundle.css';
 import SVGIconArrowLeft from '../../svgs/icon-arrow-left.svg';
 import SVGIconArrowRight from '../../svgs/icon-arrow-right.svg';
 
-const Testimonial = (props) => {
+// Register GSAP plugins
+gsap.registerPlugin(CustomEase, ScrollTrigger);
+
+const Testimonial = ({ mount, ...props }) => {
+    const [ready, setReady] = useState(mount);
+    const testimonialRef = useRef(null);
+    const backgroundRef = useRef(null);
+    const contentRef = useRef(null);
+
     useEffect(() => {
-        const swiper = new Swiper('.swiper-container', {
-            loop: true,
-            loopedSlides: 0,
-            preventClicks: false,
-            preventClicksPropagation: false,
-            speed: 750,
-            touchRatio: 0,
-            navigation: {
-                nextEl: '.testimonial__next',
-                prevEl: '.testimonial__prev',
-            },
-        });
-    }, []);
+        setReady(mount);
+
+        if (mount) {
+            const swiper = new Swiper('.swiper-container', {
+                loop: true,
+                loopedSlides: 0,
+                preventClicks: false,
+                preventClicksPropagation: false,
+                speed: 750,
+                touchRatio: 0,
+                navigation: {
+                    nextEl: '.testimonial__next',
+                    prevEl: '.testimonial__prev',
+                },
+            });
+
+            const timeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger: testimonialRef.current,
+                    start: 'top 75%',
+                },
+            });
+
+            timeline
+                .from(
+                    backgroundRef.current,
+                    {
+                        duration: 2,
+                        ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
+                        scaleY: '0',
+                        transformOrigin: 'top',
+                    },
+                    0
+                )
+                .addLabel('background')
+                .from(
+                    contentRef.current,
+                    {
+                        duration: 2,
+                        ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
+                        y: '10%',
+                        opacity: '0',
+                    },
+                    'background-=1.5'
+                );
+        }
+    }, [mount]);
 
     return (
         <div
+            ref={testimonialRef}
             className="testimonial"
             sx={{
                 py: [6, 7],
@@ -44,6 +90,10 @@ const Testimonial = (props) => {
 
                 '.swiper-container': {
                     paddingBottom: ['100px', null, '0'],
+                },
+
+                '.swiper-wrapper': {
+                    alignItems: 'center',
                 },
 
                 '.swiper-slide': {
@@ -121,7 +171,7 @@ const Testimonial = (props) => {
             }}
         >
             <Container>
-                <div>
+                <div ref={contentRef}>
                     <h2 className="testimonial__heading">Testimonials</h2>
                     <div className="swiper-container">
                         <div className="swiper-wrapper">
@@ -159,7 +209,7 @@ const Testimonial = (props) => {
                     </div>
                 </div>
             </Container>
-            <div className="testimonial__background"></div>
+            <div ref={backgroundRef} className="testimonial__background"></div>
         </div>
     );
 };

@@ -30,7 +30,7 @@ const Layout = (props) => {
                         },
                     },
                     '.tl-wrapper': {
-                        backgroundColor: `${theme.colors.background}`
+                        backgroundColor: `${theme.colors.background}`,
                     },
                     '.tl-wrapper-status--entering': {
                         position: 'fixed',

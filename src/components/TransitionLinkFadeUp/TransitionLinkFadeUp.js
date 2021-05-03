@@ -2,54 +2,57 @@ import React from 'react';
 import TransitionLink from 'gatsby-plugin-transition-link';
 import { gsap } from 'gsap';
 import CustomEase from 'gsap/CustomEase';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
 // Register GSAP plugins
-gsap.registerPlugin(CustomEase);
+gsap.registerPlugin(CustomEase, ScrollTrigger);
 
-const TransitionLinkFadeUp = ({children, to}) => {
+const TransitionLinkFadeUp = ({ children, to }) => {
     const enableScroll = () => {
         document.documentElement.scrollTop = document.body.scrollTop = 0;
         document.body.style.overflow = 'auto';
         document.body.style.height = 'auto';
-    }
+    };
 
     const disableScroll = () => {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        let scrollTop =
+            window.pageYOffset || document.documentElement.scrollTop;
 
         document.body.style.height = '100vh';
         document.body.style.overflow = 'hidden';
-        document.documentElement.scrollTop = document.body.scrollTop = scrollTop;
-    }
+    };
 
     const exitTransition = {
         length: 2,
         trigger: ({ node }) => {
             disableScroll();
 
-            var main = node;
-            gsap.to(main, {
+            gsap.to(node, {
                 duration: 2,
                 ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
                 y: '-25vh',
                 opacity: 0,
             });
+
+            ScrollTrigger.refresh();
         },
     };
 
     const enterTransition = {
-        length: 1.5,
+        length: 2,
         trigger: ({ node }) => {
-            var main = node;
             gsap.fromTo(
-                main,
+                node,
                 { y: '100vh' },
                 {
-                    duration: 1.5,
+                    duration: 2,
                     ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
                     y: '0vh',
-                    onComplete: function() {
+                    onComplete: function () {
+                        ScrollTrigger.refresh();
+
                         enableScroll();
-                    }
+                    },
                 }
             );
         },

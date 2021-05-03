@@ -11,23 +11,23 @@ import Testimonials from '../components/Testimonials/Testimonials';
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
 
-const PageHome = (props) => {
+const PageHome = ({ data, mount, transitionStatus, ...props }) => {
     const projects = [
         {
             name: 'ShopTalk London',
-            image: props.data.imageShopTalkLondon,
+            image: data.imageShopTalkLondon,
             role: 'WordPress Development',
             url: 'https://58gin.com/',
         },
         {
             name: '58 Gin',
-            image: props.data.image58Gin,
+            image: data.image58Gin,
             role: 'WordPress Development',
             url: 'https://shoptalklondon.com/',
         },
         {
             name: 'Entropy',
-            image: props.data.imageEntropy,
+            image: data.imageEntropy,
             role: 'WordPress Development',
             url: 'https://entropy.works/',
         },
@@ -69,27 +69,26 @@ const PageHome = (props) => {
     return (
         <>
             <Section>
-                <Jumbotron transitionStatus={props.transitionStatus} />
+                <Jumbotron mount={mount} />
             </Section>
             <Section>
-                <ProjectsList projects={projects} />
+                <ProjectsList mount={mount} projects={projects} />
             </Section>
             <Section>
-                <TextSplit />
+                <TextSplit mount={mount} />
             </Section>
             <Section>
-                <Testimonials testimonials={testimonials} />
+                <Testimonials mount={mount} testimonials={testimonials} />
             </Section>
-            <Footer />
+            <Footer mount={mount} />
         </>
     );
 };
 
 export default PageHome;
 
-
-export const fluidImage = graphql`
-    fragment fluidImage on File {
+export const projectListImages = graphql`
+    fragment projectListImages on File {
         childImageSharp {
             gatsbyImageData(
                 width: 700
@@ -104,17 +103,17 @@ export const fluidImage = graphql`
 export const pageQuery = graphql`
     query {
         image58Gin: file(relativePath: { eq: "image-project-58-gin.png" }) {
-            ...fluidImage
+            ...projectListImages
         }
 
         imageShopTalkLondon: file(
             relativePath: { eq: "image-project-shoptalk-london.png" }
         ) {
-            ...fluidImage
+            ...projectListImages
         }
 
         imageEntropy: file(relativePath: { eq: "image-project-entropy.png" }) {
-            ...fluidImage
+            ...projectListImages
         }
     }
 `;
