@@ -114,6 +114,7 @@ const Nav = (props) => {
                         <TransitionLinkFadeUp
                             activeClassName="is-active"
                             to={navItem.url}
+                            onClick={props.toggleNavVisible}
                         >
                             {navItem.name}
                         </TransitionLinkFadeUp>

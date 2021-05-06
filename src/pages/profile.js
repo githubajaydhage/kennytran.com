@@ -30,7 +30,9 @@ const PageProfile = ({ data, mount }) => {
                                     marginBottom: [4, 5, 6],
                                 }}
                             >
-                                Profile
+                                <TransitionLetters mount={mount}>
+                                    Profile
+                                </TransitionLetters>
                             </h1>
                             <div
                                 className="image"
