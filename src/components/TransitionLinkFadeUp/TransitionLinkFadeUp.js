@@ -49,9 +49,9 @@ const TransitionLinkFadeUp = ({ children, to }) => {
                     ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
                     y: '0vh',
                     onComplete: function () {
-                        ScrollTrigger.refresh();
-
                         enableScroll();
+
+                        ScrollTrigger.refresh();
                     },
                 }
             );
