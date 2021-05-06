@@ -34,7 +34,48 @@ module.exports = {
                 },
             },
         },
+        {
+            resolve: 'gatsby-plugin-robots-txt',
+            options: {
+                host: process.env.SITE_URL,
+                sitemap: process.env.SITE_URL + '/sitemap/sitemap-index.xml',
+                policy: [{ userAgent: '*', allow: '/' }]
+            }
+        },
         'gatsby-plugin-sharp',
+        {
+            resolve: 'gatsby-plugin-sitemap',
+            options: {
+                query: `
+                {
+                    site {
+                        siteMetadata {
+                            siteUrl
+                        }
+                    }
+
+                    allSitePage {
+                        nodes {
+                            path
+                        }
+                    }
+                }`,
+                resolveSiteUrl: ({site}) => site.siteMetadata.siteUrl,
+                resolvePages: ({
+                    allSitePage: { nodes: allPages },
+                }) => {
+                    return allPages.map((page) => {
+                        return { ...page };
+                    });
+                },
+                serialize: ({ path, modifiedGmt }) => {
+                    return {
+                        url: path,
+                        lastmod: modifiedGmt,
+                    };
+                },
+            },
+        },
         'gatsby-plugin-theme-ui',
         {
             resolve: 'gatsby-plugin-transition-link',
