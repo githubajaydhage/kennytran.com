@@ -27,14 +27,6 @@ module.exports = {
         'gatsby-plugin-gatsby-cloud',
         'gatsby-plugin-image',
         {
-            resolve: 'gatsby-plugin-react-svg',
-            options: {
-                rule: {
-                    include: /svgs/,
-                },
-            },
-        },
-        {
             resolve: 'gatsby-plugin-manifest',
             options: {
                 name: 'Kenny Tran',
@@ -46,7 +38,56 @@ module.exports = {
                 theme_color: '#15151B',
             },
         },
+        {
+            resolve: 'gatsby-plugin-react-svg',
+            options: {
+                rule: {
+                    include: /svgs/,
+                },
+            },
+        },
+        {
+            resolve: 'gatsby-plugin-robots-txt',
+            options: {
+                host: process.env.SITE_URL,
+                sitemap: process.env.SITE_URL + '/sitemap/sitemap-index.xml',
+                policy: [{ userAgent: '*', allow: '/' }]
+            }
+        },
         'gatsby-plugin-sharp',
+        {
+            resolve: 'gatsby-plugin-sitemap',
+            options: {
+                query: `
+                {
+                    site {
+                        siteMetadata {
+                            siteUrl
+                        }
+                    }
+
+                    allSitePage {
+                        nodes {
+                            path
+                        }
+                    }
+                }`,
+                resolveSiteUrl: ({site}) => site.siteMetadata.siteUrl,
+                resolvePages: ({
+                    allSitePage: { nodes: allPages },
+                }) => {
+                    return allPages.map((page) => {
+                        return { ...page };
+                    });
+                },
+                serialize: ({ path, modifiedGmt }) => {
+                    return {
+                        url: path,
+                        lastmod: modifiedGmt,
+                    };
+                },
+            },
+        },
         'gatsby-plugin-theme-ui',
         {
             resolve: 'gatsby-plugin-transition-link',
