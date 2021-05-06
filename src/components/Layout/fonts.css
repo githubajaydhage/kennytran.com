@@ -1,6 +1,7 @@
 @import url("//hello.myfonts.net/count/3d9b5c");
   
 @font-face {
+    font-display: swap;
     font-family: "BwGradual";
     font-style: normal;
     font-weight: normal;
@@ -9,6 +10,7 @@
          url('../../fonts/BwGradual/normal_normal_normal.woff') format('woff');
 }
 @font-face {
+    font-display: swap;
     font-family: "BwGradual";
     font-style: normal;
     font-weight: bold;
