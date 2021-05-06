@@ -38,6 +38,7 @@ module.exports = {
                 theme_color: '#15151B',
             },
         },
+        'gatsby-plugin-preload-fonts',
         {
             resolve: 'gatsby-plugin-react-svg',
             options: {
