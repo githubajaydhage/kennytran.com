@@ -91,6 +91,7 @@ const Footer = ({ mount }) => {
                 marginBottom: [null, 6],
                 position: 'relative',
                 backgroundColor: ['muted', 'transparent'],
+                overflow: 'hidden',
 
                 h1: {
                     fontSize: [7, null, null, 8],
