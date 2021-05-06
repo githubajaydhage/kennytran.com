@@ -260,7 +260,7 @@ const Footer = ({ mount }) => {
                                         <Link
                                             to="/"
                                             sx={{
-                                                variant: 'text.nav',
+                                                variant: 'text.capitalised',
                                             }}
                                         >
                                             Home
@@ -270,7 +270,7 @@ const Footer = ({ mount }) => {
                                         <Link
                                             to="/work"
                                             sx={{
-                                                variant: 'text.nav',
+                                                variant: 'text.capitalised',
                                             }}
                                         >
                                             Work
@@ -280,7 +280,7 @@ const Footer = ({ mount }) => {
                                         <Link
                                             to="/contact"
                                             sx={{
-                                                variant: 'text.nav',
+                                                variant: 'text.capitalised',
                                             }}
                                         >
                                             Contact
