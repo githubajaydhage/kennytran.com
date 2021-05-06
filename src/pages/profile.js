@@ -7,6 +7,7 @@ import TransitionFadeUp from '../components/TransitionFadeUp/TransitionFadeUp';
 import TransitionImage from '../components/TransitionImage/TransitionImage';
 import TransitionLetters from '../components/TransitionLetters/TransitionLetters';
 import Section from '../components/Section/Section';
+import SEO from '../components/SEO/SEO';
 import SocialLinks from '../components/SocialLinks/SocialLinks';
 import Stack from '../components/Stack/Stack';
 
@@ -18,6 +19,7 @@ const PageProfile = ({ data, mount }) => {
 
     return (
         <>
+            <SEO title="Profile" />
             <Section>
                 <Container>
                     <Grid gap={5} columns={[1, '1fr 2fr']}>
