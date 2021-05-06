@@ -90,7 +90,6 @@ const Footer = ({ mount }) => {
                 marginTop: [7],
                 marginBottom: [null, 6],
                 position: 'relative',
-                backgroundColor: ['muted', 'transparent'],
                 overflow: 'hidden',
 
                 h1: {
@@ -126,7 +125,7 @@ const Footer = ({ mount }) => {
                     height: '100%',
                     position: 'absolute',
                     top: 0,
-                    left: 0,
+                    left: ['-25px', 0],
                     zIndex: '-1',
                     transform: [null, null, null, null, 'translate(100px, 0)'],
                     backgroundColor: 'muted',
@@ -268,22 +267,12 @@ const Footer = ({ mount }) => {
                                     </li>
                                     <li>
                                         <Link
-                                            to="/work"
+                                            to="/profile"
                                             sx={{
                                                 variant: 'text.capitalised',
                                             }}
                                         >
-                                            Work
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            to="/contact"
-                                            sx={{
-                                                variant: 'text.capitalised',
-                                            }}
-                                        >
-                                            Contact
+                                            Profile
                                         </Link>
                                     </li>
                                 </ul>

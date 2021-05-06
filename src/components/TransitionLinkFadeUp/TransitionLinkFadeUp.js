@@ -7,7 +7,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 // Register GSAP plugins
 gsap.registerPlugin(CustomEase, ScrollTrigger);
 
-const TransitionLinkFadeUp = ({ children, to }) => {
+const TransitionLinkFadeUp = ({ children, onClick, to }) => {
     const enableScroll = () => {
         document.documentElement.scrollTop = document.body.scrollTop = 0;
         document.body.style.overflow = 'auto';
@@ -63,6 +63,7 @@ const TransitionLinkFadeUp = ({ children, to }) => {
             to={to}
             exit={exitTransition}
             entry={enterTransition}
+            onClick={onClick}
             preventScrollJump
         >
             {children}
