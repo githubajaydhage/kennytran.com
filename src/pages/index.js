@@ -7,6 +7,7 @@ import ProjectsList from '../components/ProjectsList/ProjectsList';
 import Section from '../components/Section/Section';
 import TextSplit from '../components/TextSplit/TextSplit';
 import Testimonials from '../components/Testimonials/Testimonials';
+import SEO from '../components/SEO/SEO';
 
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
@@ -68,6 +69,7 @@ const PageHome = ({ data, mount, transitionStatus, ...props }) => {
 
     return (
         <>
+            <SEO title="Home" />
             <Section>
                 <Jumbotron mount={mount} />
             </Section>
