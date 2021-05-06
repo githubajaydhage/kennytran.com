@@ -34,6 +34,18 @@ module.exports = {
                 },
             },
         },
+        {
+            resolve: 'gatsby-plugin-manifest',
+            options: {
+                name: 'Kenny Tran',
+                background_color: '#15151B',
+                display: 'minimal-ui',
+                icon: './src/images/favicon.png',
+                short_name: 'Kenny Tran',
+                start_url: '/',
+                theme_color: '#15151B',
+            },
+        },
         'gatsby-plugin-sharp',
         'gatsby-plugin-theme-ui',
         {
