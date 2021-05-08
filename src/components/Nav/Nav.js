@@ -64,7 +64,7 @@ const Nav = (props) => {
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'center',
-                        backgroundColor: 'muted',
+                        backgroundColor: ['muted', 'transparent'],
                     },
                 },
 
