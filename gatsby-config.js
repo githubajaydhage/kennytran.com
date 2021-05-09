@@ -52,8 +52,8 @@ module.exports = {
             options: {
                 host: process.env.SITE_URL,
                 sitemap: process.env.SITE_URL + '/sitemap/sitemap-index.xml',
-                policy: [{ userAgent: '*', allow: '/' }]
-            }
+                policy: [{ userAgent: '*', allow: '/' }],
+            },
         },
         'gatsby-plugin-sharp',
         {
@@ -73,10 +73,8 @@ module.exports = {
                         }
                     }
                 }`,
-                resolveSiteUrl: ({site}) => site.siteMetadata.siteUrl,
-                resolvePages: ({
-                    allSitePage: { nodes: allPages },
-                }) => {
+                resolveSiteUrl: ({ site }) => site.siteMetadata.siteUrl,
+                resolvePages: ({ allSitePage: { nodes: allPages } }) => {
                     return allPages.map((page) => {
                         return { ...page };
                     });

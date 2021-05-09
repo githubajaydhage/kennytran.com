@@ -1,1 +1,21 @@
-{"timestamp":1620336294751,"hash":"0267da378e3c3419199fe11640702152","assets":{"/dev-404-page/":{"/static/normal_normal_normal-2d5241579317a82a7d74a1bd0b0d1eba.woff2":true},"/404/":{"/static/normal_normal_normal-2d5241579317a82a7d74a1bd0b0d1eba.woff2":true},"/":{"/static/normal_normal_normal-2d5241579317a82a7d74a1bd0b0d1eba.woff2":true},"/profile/":{"/static/normal_normal_normal-2d5241579317a82a7d74a1bd0b0d1eba.woff2":true},"/404.html":{"/static/normal_normal_normal-2d5241579317a82a7d74a1bd0b0d1eba.woff2":true}}}
+{
+    "timestamp": 1620336294751,
+    "hash": "0267da378e3c3419199fe11640702152",
+    "assets": {
+        "/dev-404-page/": {
+            "/static/normal_normal_normal-2d5241579317a82a7d74a1bd0b0d1eba.woff2": true
+        },
+        "/404/": {
+            "/static/normal_normal_normal-2d5241579317a82a7d74a1bd0b0d1eba.woff2": true
+        },
+        "/": {
+            "/static/normal_normal_normal-2d5241579317a82a7d74a1bd0b0d1eba.woff2": true
+        },
+        "/profile/": {
+            "/static/normal_normal_normal-2d5241579317a82a7d74a1bd0b0d1eba.woff2": true
+        },
+        "/404.html": {
+            "/static/normal_normal_normal-2d5241579317a82a7d74a1bd0b0d1eba.woff2": true
+        }
+    }
+}
