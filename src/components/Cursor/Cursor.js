@@ -25,24 +25,31 @@ const Cursor = ({ path }) => {
             });
         }
 
-        var hoverItems = document.querySelectorAll('a, button');
+        var hoverItems = document.querySelectorAll('a, button, [role="button"]');
 
         hoverItems.forEach(function (anchor) {
-            anchor.addEventListener('mouseover', function hover() {
+            anchor.addEventListener('mouseover', function hover(event) {
                 gsap.to(cursorRef.current, 0.75, {
                     ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
                     scale: '0',
                 });
 
-                gsap.to(cursorFollowRef.current, 0.75, {
-                    ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
-                    scale: 2,
-                });
+                if(anchor.classList.contains('button') || anchor.classList.contains('swiper-button')) {
+                    gsap.to(cursorFollowRef.current, 0.75, {
+                        ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
+                        scale: 0,
+                    });
+                } else {
+                    gsap.to(cursorFollowRef.current, 0.75, {
+                        ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
+                        scale: 2.5,
+                    });
+                }
             });
 
             anchor.addEventListener('mouseleave', function leave() {
                 gsap.to(cursorRef.current, 0.75, {
-                    scale: '1',
+                    scale: 1,
                 });
 
                 gsap.to(cursorFollowRef.current, 0.75, {

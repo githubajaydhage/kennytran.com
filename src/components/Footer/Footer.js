@@ -259,7 +259,7 @@ const Footer = ({ mount }) => {
                                         <Link
                                             to="/"
                                             sx={{
-                                                variant: 'text.capitalised',
+                                                variant: 'text.nav',
                                             }}
                                         >
                                             Home
@@ -269,7 +269,7 @@ const Footer = ({ mount }) => {
                                         <Link
                                             to="/profile"
                                             sx={{
-                                                variant: 'text.capitalised',
+                                                variant: 'text.nav',
                                             }}
                                         >
                                             Profile

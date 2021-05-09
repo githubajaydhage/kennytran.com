@@ -9,8 +9,8 @@ const Button = (props) => {
             type={props.type}
             onClick={props.onClick}
             sx={{
-                width: ['120px', '160px'],
-                height: ['120px', '160px'],
+                width: ['120px', '140px'],
+                height: ['120px', '140px'],
                 padding: 0,
                 position: 'relative',
                 color: 'text',
@@ -31,10 +31,17 @@ const Button = (props) => {
                     borderStyle: 'solid',
                     borderColor: 'border',
                     borderRadius: '50%',
+                    transition: 'transform 0.75s cubic-bezier(.19, 1, .22, 1)',
                 },
 
                 '&:focus': {
                     outline: 'none',
+                },
+
+                '&:hover': {
+                    '::before': {
+                        transform: 'scale(1.25)'
+                    },
                 },
             }}
         >
