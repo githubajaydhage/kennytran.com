@@ -83,6 +83,9 @@ export default {
             lineHeight: 1,
             textTransform: 'uppercase',
         },
+        nav: {
+            variant: 'text.capitalised',
+        },
         jumbotron: {
             fontSize: ['60px', '80px', '100px', '120px', '130px', '160px'],
             lineHeight: '1.1',
