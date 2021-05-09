@@ -6,11 +6,12 @@ import { jsx } from 'theme-ui';
 import { Global } from '@emotion/react';
 
 import Header from '../Header/Header';
+import Cursor from '../Cursor/Cursor';
 
 import './normalize.css';
 import './fonts.css';
 
-const Layout = (props) => {
+const Layout = ({ children, path }) => {
     return (
         <>
             <Global
@@ -47,7 +48,8 @@ const Layout = (props) => {
             />
             <div className="layout">
                 <Header />
-                {props.children}
+                {children}
+                <Cursor path={path} />
             </div>
         </>
     );

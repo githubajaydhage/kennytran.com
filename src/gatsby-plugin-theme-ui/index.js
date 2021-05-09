@@ -90,6 +90,7 @@ export default {
         },
     },
     zIndices: {
+        cursor: '200',
         header: '100',
         nav: '100',
         navTrigger: '105',
