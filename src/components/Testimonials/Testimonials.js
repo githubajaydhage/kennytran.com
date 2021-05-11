@@ -93,7 +93,7 @@ const Testimonial = ({ mount, ...props }) => {
                 },
 
                 '.swiper-wrapper': {
-                    alignItems: 'center',
+                    alignItems: [null, null, 'center'],
                 },
 
                 '.swiper-slide': {
