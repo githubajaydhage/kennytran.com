@@ -11,10 +11,22 @@ gsap.registerPlugin(CustomEase, ScrollTrigger);
 
 const TextSplit = ({ mount, ...props }) => {
     const [ready, setReady] = useState(mount);
-    const columnLeftRef = useRef(null);
-    const columnRightRef = useRef(null);
+    const columnLeftRefs = useRef([]);
+    const columnRightRefs = useRef([]);
     const dividerRef = useRef(null);
     const textSplitRef = useRef(null);
+
+    const addToColumnLeftRefs = (element) => {
+        if (element && !columnLeftRefs.current.includes(element)) {
+            columnLeftRefs.current.push(element);
+        }
+    };
+
+    const addToColumnRightRefs = (element) => {
+        if (element && !columnRightRefs.current.includes(element)) {
+            columnRightRefs.current.push(element);
+        }
+    };
 
     useEffect(() => {
         setReady(mount);
@@ -27,36 +39,39 @@ const TextSplit = ({ mount, ...props }) => {
                 },
             });
 
-            timeline
-                .from(
-                    columnLeftRef.current,
-                    {
-                        duration: 2,
-                        ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
-                        y: '10%',
-                        opacity: '0',
-                    },
-                    0
-                )
-                .from(
-                    columnRightRef.current,
-                    {
-                        duration: 2,
-                        ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
-                        y: '10%',
-                        opacity: '0',
-                    },
-                    0
-                )
-                .from(
-                    dividerRef.current,
-                    {
-                        duration: 2,
-                        ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
-                        height: '0%',
-                    },
-                    0.25
-                );
+            timeline.from(
+                columnLeftRefs.current,
+                {
+                    duration: 2,
+                    stagger: 0.1,
+                    ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
+                    y: '20px',
+                    opacity: '0',
+                },
+                0
+            );
+
+            timeline.from(
+                columnRightRefs.current,
+                {
+                    duration: 2,
+                    stagger: 0.1,
+                    ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
+                    y: '20px',
+                    opacity: '0',
+                },
+                0.25
+            );
+
+            timeline.from(
+                dividerRef.current,
+                {
+                    duration: 2,
+                    ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
+                    height: '0%',
+                },
+                0.75
+            );
         }
     }, [mount]);
 
@@ -102,39 +117,43 @@ const TextSplit = ({ mount, ...props }) => {
             >
                 <Grid columns={[1, null, 2]}>
                     <Box
-                        ref={columnLeftRef}
                         sx={{
                             paddingLeft: [5, null, '0', null, 7],
                             paddingRight: [5, null, '50px', null, 7],
                         }}
                     >
-                        <h3>Services</h3>
+                        <h3 ref={addToColumnLeftRefs}>Services</h3>
                         <ul>
-                            <li>Front-end Templates</li>
-                            <li>JAMStack Websites</li>
-                            <li>WordPress Websites</li>
-                            <li>WooCommerce Stores</li>
-                            <li>Shopify Stores</li>
+                            <li ref={addToColumnLeftRefs}>
+                                Front-end Templates
+                            </li>
+                            <li ref={addToColumnLeftRefs}>JAMStack Websites</li>
+                            <li ref={addToColumnLeftRefs}>
+                                WordPress Websites
+                            </li>
+                            <li ref={addToColumnLeftRefs}>
+                                WooCommerce Stores
+                            </li>
+                            <li ref={addToColumnLeftRefs}>Shopify Stores</li>
                         </ul>
                     </Box>
                     <Box
-                        ref={columnRightRef}
                         sx={{
                             paddingTop: [6, 7],
                             paddingLeft: [5, null, '50px', null, 7],
                             paddingRight: [5, null, '0', null, 7],
                         }}
                     >
-                        <h3>Technologies</h3>
+                        <h3 ref={addToColumnRightRefs}>Technologies</h3>
                         <ul>
-                            <li>HTML</li>
-                            <li>CSS</li>
-                            <li>Sass</li>
-                            <li>JavaScript</li>
-                            <li>PHP</li>
-                            <li>WordPress</li>
-                            <li>Gatsby</li>
-                            <li>Eleventy</li>
+                            <li ref={addToColumnRightRefs}>HTML</li>
+                            <li ref={addToColumnRightRefs}>CSS</li>
+                            <li ref={addToColumnRightRefs}>Sass</li>
+                            <li ref={addToColumnRightRefs}>JavaScript</li>
+                            <li ref={addToColumnRightRefs}>PHP</li>
+                            <li ref={addToColumnRightRefs}>WordPress</li>
+                            <li ref={addToColumnRightRefs}>Gatsby</li>
+                            <li ref={addToColumnRightRefs}>Eleventy</li>
                         </ul>
                     </Box>
                 </Grid>

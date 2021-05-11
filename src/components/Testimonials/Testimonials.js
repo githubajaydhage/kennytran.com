@@ -20,12 +20,17 @@ const Testimonial = ({ mount, ...props }) => {
     const testimonialRef = useRef(null);
     const backgroundRef = useRef(null);
     const contentRef = useRef(null);
+    const headingRef = useRef(null);
+    const sliderRef = useRef(null);
 
     useEffect(() => {
         setReady(mount);
 
         if (mount) {
             const swiper = new Swiper('.swiper-container', {
+                autoplay: {
+                    delay: 10000,
+                },
                 loop: true,
                 loopedSlides: 0,
                 preventClicks: false,
@@ -52,20 +57,30 @@ const Testimonial = ({ mount, ...props }) => {
                         duration: 2,
                         ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
                         scaleY: '0',
-                        transformOrigin: 'top',
+                        transformOrigin: 'bottom',
                     },
                     0
                 )
-                .addLabel('background')
                 .from(
-                    contentRef.current,
+                    headingRef.current,
+                    {
+                        duration: 2,
+                        ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
+                        y: '20px',
+                        opacity: '0',
+                    },
+                    0.5
+
+                )
+                .from(
+                    sliderRef.current,
                     {
                         duration: 2,
                         ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
                         y: '10%',
                         opacity: '0',
                     },
-                    'background-=1.5'
+                    0.6
                 );
         }
     }, [mount]);
@@ -93,7 +108,7 @@ const Testimonial = ({ mount, ...props }) => {
                 },
 
                 '.swiper-wrapper': {
-                    alignItems: 'center',
+                    alignItems: [null, null, 'center'],
                 },
 
                 '.swiper-slide': {
@@ -181,8 +196,8 @@ const Testimonial = ({ mount, ...props }) => {
         >
             <Container>
                 <div ref={contentRef}>
-                    <h2 className="testimonial__heading">Testimonials</h2>
-                    <div className="swiper-container">
+                    <h2 ref={headingRef} className="testimonial__heading">Testimonials</h2>
+                    <div ref={sliderRef} className="swiper-container">
                         <div className="swiper-wrapper">
                             {props.testimonials.map((testimonial, index) => (
                                 <div className="swiper-slide" key={index}>
