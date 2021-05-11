@@ -28,9 +28,11 @@ const Footer = ({ mount }) => {
     const [ready, setReady] = useState(mount);
     const [state, handleSubmit] = useForm('xpzkwpwk', true);
     const backgroundRef = useRef(null);
-    const contentRef = useRef(null);
+    const formRef = useRef(null);
     const footerRef = useRef(null);
     const headingRef = useRef(null);
+    const navRef = useRef(null);
+    const socialRef = useRef(null);
 
     useEffect(() => {
         setReady(mount);
@@ -70,14 +72,34 @@ const Footer = ({ mount }) => {
                     0.5
                 )
                 .from(
-                    contentRef.current,
+                    formRef.current,
                     {
                         duration: 2,
                         ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
                         y: '10%',
                         opacity: '0',
                     },
-                    0.75
+                    0.7
+                )
+                .from(
+                    navRef.current,
+                    {
+                        duration: 2,
+                        ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
+                        y: '10%',
+                        opacity: '0',
+                    },
+                    0.9
+                )
+                .from(
+                    socialRef.current,
+                    {
+                        duration: 2,
+                        ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
+                        y: '10%',
+                        opacity: '0',
+                    },
+                    1.1
                 );
         }
     }, [mount]);
@@ -139,164 +161,151 @@ const Footer = ({ mount }) => {
                             ? 'Thank you for your message'
                             : 'Get in touch'}
                     </Themed.h1>
-                    <div ref={contentRef} className="footer__content">
-                        <form onSubmit={handleSubmit}>
-                            <Grid
-                                columns={[1, null, '1fr 1.6fr']}
-                                gap={[5, null]}
-                                sx={{
-                                    paddingRight: [
-                                        null,
-                                        null,
-                                        null,
-                                        7,
-                                        null,
-                                        8,
-                                    ],
-                                }}
-                            >
-                                <Box>
-                                    <Input
-                                        id="name"
-                                        type="name"
-                                        name="name"
-                                        required
-                                        placeholder="Name"
-                                    />
-                                    <ValidationError
-                                        prefix="Name"
-                                        field="name"
-                                        errors={state.errors}
-                                    />
-                                </Box>
-                                <Box
-                                    sx={{
-                                        display: 'grid',
-                                        gridGap: 5,
-                                    }}
-                                >
-                                    <Input
-                                        id="email"
-                                        type="email"
-                                        name="email"
-                                        placeholder="Email"
-                                        required
-                                        sx={{
-                                            width: [
-                                                null,
-                                                null,
-                                                null,
-                                                null,
-                                                '60%',
-                                            ],
-                                        }}
-                                    />
-                                    <ValidationError
-                                        prefix="Email"
-                                        field="email"
-                                        errors={state.errors}
-                                    />
-                                    <Box
-                                        sx={{
-                                            position: [
-                                                null,
-                                                null,
-                                                null,
-                                                'relative',
-                                            ],
-                                        }}
-                                    >
-                                        <Textarea
-                                            id="message"
-                                            name="message"
-                                            required
-                                            placeholder="Message"
-                                            rows={10}
-                                        />
-                                        <ValidationError
-                                            prefix="Message"
-                                            field="message"
-                                            errors={state.errors}
-                                        />
-                                        <Button
-                                            type="submit"
-                                            disabled={state.submitting}
-                                        >
-                                            submit
-                                        </Button>
-                                    </Box>
-                                </Box>
-                            </Grid>
-                        </form>
-                        <Divider
-                            sx={{
-                                marginBottom: [2, 4],
-                            }}
-                        />
+                    <form ref={formRef} onSubmit={handleSubmit}>
                         <Grid
-                            columns={[1, null, 2]}
+                            columns={[1, null, '1fr 1.6fr']}
+                            gap={[5, null]}
                             sx={{
-                                marginBottom: 6,
+                                paddingRight: [null, null, null, 7, null, 8],
                             }}
                         >
                             <Box>
-                                <ul
-                                    sx={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        padding: 0,
-                                        margin: 0,
-                                        listStyle: 'none',
-
-                                        '& > li': {
-                                            '&:not(:last-child)': {
-                                                marginRight: 5,
-                                            },
-                                        },
-                                    }}
-                                >
-                                    <li>
-                                        <Link
-                                            to="/"
-                                            sx={{
-                                                variant: 'text.capitalised',
-                                            }}
-                                        >
-                                            Home
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            to="/profile"
-                                            sx={{
-                                                variant: 'text.capitalised',
-                                            }}
-                                        >
-                                            Profile
-                                        </Link>
-                                    </li>
-                                </ul>
+                                <Input
+                                    id="name"
+                                    type="name"
+                                    name="name"
+                                    required
+                                    placeholder="Name"
+                                />
+                                <ValidationError
+                                    prefix="Name"
+                                    field="name"
+                                    errors={state.errors}
+                                />
                             </Box>
                             <Box
                                 sx={{
-                                    paddingRight: [null, null, null, null, 7],
+                                    display: 'grid',
+                                    gridGap: 5,
                                 }}
                             >
-                                <p
+                                <Input
+                                    id="email"
+                                    type="email"
+                                    name="email"
+                                    placeholder="Email"
+                                    required
                                     sx={{
-                                        fontSize: [0, 1],
+                                        width: [null, null, null, null, '60%'],
+                                    }}
+                                />
+                                <ValidationError
+                                    prefix="Email"
+                                    field="email"
+                                    errors={state.errors}
+                                />
+                                <Box
+                                    sx={{
+                                        position: [
+                                            null,
+                                            null,
+                                            null,
+                                            'relative',
+                                        ],
                                     }}
                                 >
-                                    Copyright &copy; 2021 Kenny Tran Co Ltd.
-                                    Registered in England and Wales. Company
-                                    number 12716945.
-                                </p>
+                                    <Textarea
+                                        id="message"
+                                        name="message"
+                                        required
+                                        placeholder="Message"
+                                        rows={10}
+                                    />
+                                    <ValidationError
+                                        prefix="Message"
+                                        field="message"
+                                        errors={state.errors}
+                                    />
+                                    <Button
+                                        type="submit"
+                                        disabled={state.submitting}
+                                    >
+                                        submit
+                                    </Button>
+                                </Box>
                             </Box>
                         </Grid>
+                    </form>
+                    <div ref={navRef}>
+                    <Divider
+                        sx={{
+                            marginBottom: [2, 4],
+                        }}
+                    />
+                    <Grid
+                        columns={[1, null, 2]}
+                        sx={{
+                            marginBottom: 6,
+                        }}
+                    >
                         <Box>
-                            <SocialLinks />
+                            <ul
+                                sx={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    padding: 0,
+                                    margin: 0,
+                                    listStyle: 'none',
+
+                                    '& > li': {
+                                        '&:not(:last-child)': {
+                                            marginRight: 5,
+                                        },
+                                    },
+                                }}
+                            >
+                                <li>
+                                    <Link
+                                        to="/"
+                                        sx={{
+                                            variant: 'text.capitalised',
+                                        }}
+                                    >
+                                        Home
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        to="/profile"
+                                        sx={{
+                                            variant: 'text.capitalised',
+                                        }}
+                                    >
+                                        Profile
+                                    </Link>
+                                </li>
+                            </ul>
                         </Box>
+                        <Box
+                            sx={{
+                                paddingRight: [null, null, null, null, 7],
+                            }}
+                        >
+                            <p
+                                sx={{
+                                    fontSize: [0, 1],
+                                }}
+                            >
+                                Copyright &copy; 2021 Kenny Tran Co Ltd.
+                                Registered in England and Wales. Company number
+                                12716945.
+                            </p>
+                        </Box>
+                    </Grid>
                     </div>
+                    <Box ref={socialRef}>
+                        <SocialLinks />
+                    </Box>
                     <div
                         ref={backgroundRef}
                         className="footer__background"

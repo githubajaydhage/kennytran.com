@@ -268,7 +268,11 @@ const ProjectsListItem = ({ id, mount, ...props }) => {
                                 className="project-list-item__image-mask-container"
                                 ref={imageMaskContainerRef}
                             >
-                                <GatsbyImage image={image} alt={props.name} />
+                                <GatsbyImage
+                                    image={image}
+                                    alt={props.name}
+                                    loading="eager"
+                                />
                             </div>
                         </div>
                         <div
