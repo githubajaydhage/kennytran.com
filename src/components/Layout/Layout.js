@@ -29,9 +29,6 @@ const Layout = ({ children, path }) => {
                     a: {
                         color: theme.colors.primary,
                         textDecoration: 'none',
-                        '&:hover': {
-                            textDecoration: 'underline',
-                        },
                     },
                     '.tl-wrapper': {
                         backgroundColor: `${theme.colors.background}`,

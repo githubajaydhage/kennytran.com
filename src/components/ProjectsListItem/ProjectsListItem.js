@@ -210,7 +210,6 @@ const ProjectsListItem = ({ id, mount, ...props }) => {
                     alignItems: 'center',
                     paddingBottom: [4, 3, 4],
                     color: 'text',
-                    textDecoration: 'none',
                     whiteSpace: 'nowrap',
 
                     svg: {

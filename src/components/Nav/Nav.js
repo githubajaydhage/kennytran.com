@@ -91,21 +91,6 @@ const Nav = (props) => {
                             marginBottom: [4, null, 0],
                             marginRight: [0, null, 5],
                         },
-
-                        '& > a': {
-                            display: 'block',
-                            color: 'text',
-                            fontSize: 1,
-                            letterSpacing: '0.16em',
-                            lineHeight: 1,
-                            textDecoration: 'none',
-                            textTransform: 'uppercase',
-                            outline: 'none',
-
-                            '&.is-active': {
-                                color: 'tertiary',
-                            },
-                        },
                     },
                 }}
             >
@@ -115,6 +100,9 @@ const Nav = (props) => {
                             activeClassName="is-active"
                             to={navItem.url}
                             onClick={props.toggleNavVisible}
+                            sx={{
+                                variant: 'text.nav'
+                            }}
                         >
                             {navItem.name}
                         </TransitionLinkFadeUp>

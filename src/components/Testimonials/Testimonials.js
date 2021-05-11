@@ -127,8 +127,8 @@ const Testimonial = ({ mount, ...props }) => {
 
                 '.testimonial__prev, .testimonial__next': {
                     display: 'grid',
-                    width: '50px',
-                    height: '50px',
+                    width: '80px',
+                    height: '80px',
                     position: 'absolute',
                     top: [null, null, '50%'],
                     bottom: ['0', null, 'auto'],
@@ -144,12 +144,19 @@ const Testimonial = ({ mount, ...props }) => {
                     '::before': {
                         content: '""',
                         display: 'block',
-                        width: '48px',
-                        height: '48px',
+                        width: '80px',
+                        height: '80px',
                         borderWidth: '1px',
                         borderStyle: 'solid',
                         borderColor: 'border',
                         borderRadius: '50%',
+                        transition: 'transform 0.75s cubic-bezier(.19, 1, .22, 1)',
+                    },
+
+                    ':hover': {
+                        '::before': {
+                            transform: 'scale(1.25)'
+                        }
                     },
                 },
 
@@ -157,12 +164,14 @@ const Testimonial = ({ mount, ...props }) => {
                     cursor: 'pointer',
                     left: [null, null, '0'],
                     right: ['0', null, 'auto'],
+
                     transform: [
                         'translate(calc(-100% - 20px), 0)',
                         null,
                         'translate(0, -50%)',
                     ],
                 },
+
                 '.testimonial__next': {
                     cursor: 'pointer',
                     right: ['0'],
@@ -214,13 +223,12 @@ const Testimonial = ({ mount, ...props }) => {
                                 </div>
                             ))}
                         </div>
-
-                        <div className="testimonial__prev">
-                            <SVGIconArrowLeft />
-                        </div>
-                        <div className="testimonial__next">
-                            <SVGIconArrowRight />
-                        </div>
+                    </div>
+                    <div className="testimonial__prev swiper-button">
+                        <SVGIconArrowLeft />
+                    </div>
+                    <div className="testimonial__next swiper-button">
+                        <SVGIconArrowRight />
                     </div>
                 </div>
             </Container>
