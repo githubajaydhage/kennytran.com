@@ -112,7 +112,7 @@ const Testimonial = ({ mount, ...props }) => {
                 },
 
                 '.swiper-slide': {
-                    px: [null, null, '70px'],
+                    px: [null, null, '80px'],
                 },
 
                 '.testimonial__background': {
@@ -144,8 +144,8 @@ const Testimonial = ({ mount, ...props }) => {
                     '::before': {
                         content: '""',
                         display: 'block',
-                        width: '80px',
-                        height: '80px',
+                        width: '60px',
+                        height: '60px',
                         borderWidth: '1px',
                         borderStyle: 'solid',
                         borderColor: 'border',
@@ -166,7 +166,7 @@ const Testimonial = ({ mount, ...props }) => {
                     right: ['0', null, 'auto'],
 
                     transform: [
-                        'translate(calc(-100% - 20px), 0)',
+                        'translate(-100%, 0)',
                         null,
                         'translate(0, -50%)',
                     ],
@@ -195,7 +195,7 @@ const Testimonial = ({ mount, ...props }) => {
             }}
         >
             <Container>
-                <div ref={contentRef}>
+                <div ref={contentRef} sx={{ position: 'relative' }}>
                     <h2 ref={headingRef} className="testimonial__heading">Testimonials</h2>
                     <div ref={sliderRef} className="swiper-container">
                         <div className="swiper-wrapper">
