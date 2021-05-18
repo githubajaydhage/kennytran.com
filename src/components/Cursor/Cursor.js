@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import { CustomEase } from 'gsap/CustomEase';
 
 /** @jsx jsx */
-import { jsx } from 'theme-ui';
+import { jsx, useThemeUI } from 'theme-ui';
 
 // Register GSAP plugins
 gsap.registerPlugin(CustomEase);
@@ -11,6 +11,8 @@ gsap.registerPlugin(CustomEase);
 const Cursor = ({ path }) => {
     const cursorRef = useRef(null);
     const cursorFollowRef = useRef(null);
+    const context = useThemeUI();
+    const { theme } = context;
 
     useEffect(() => {
         function setFromEvent(event) {
@@ -42,6 +44,7 @@ const Cursor = ({ path }) => {
                 } else {
                     gsap.to(cursorFollowRef.current, 0.75, {
                         ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
+                        borderColor: theme.colors.accent,
                         scale: 2.5,
                     });
                 }
@@ -54,6 +57,7 @@ const Cursor = ({ path }) => {
 
                 gsap.to(cursorFollowRef.current, 0.75, {
                     scale: 1,
+                    borderColor: theme.colors.border,
                 });
             });
         });

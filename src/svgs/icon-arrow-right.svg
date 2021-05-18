@@ -1,11 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="14px" height="8px" viewBox="0 0 14 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>→</title>
-    <g id="TEMPLATES" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="KT_Homepage" transform="translate(-668.000000, -2343.000000)" fill="#F4F1EC" fill-rule="nonzero">
-            <g id="Project-2" transform="translate(185.000000, 1846.000000)">
-                <polygon id="→" points="492.984375 504.59375 496.359375 501.21875 492.984375 497.84375 492.984375 500.640625 483.828125 500.640625 483.828125 501.796875 492.984375 501.796875"></polygon>
-            </g>
-        </g>
-    </g>
-</svg>
+<svg width="14" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M9.984 7.594l3.375-3.375L9.984.844V3.64H.828v1.156h9.156z" fill="#F4F1EC" fill-rule="nonzero"/></svg>

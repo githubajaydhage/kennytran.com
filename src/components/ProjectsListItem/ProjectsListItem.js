@@ -206,15 +206,31 @@ const ProjectsListItem = ({ id, mount, ...props }) => {
                 },
 
                 '.project-list-item__cta': {
-                    display: 'flex',
+                    display: 'inline-flex',
                     alignItems: 'center',
                     paddingBottom: [4, 3, 4],
                     color: 'text',
                     whiteSpace: 'nowrap',
+                    transition: 'color 0.75s cubic-bezier(.19, 1, .22, 1)',
 
                     svg: {
                         marginLeft: 2,
+
+                        path: {
+                            fill: 'text',
+                            transition: 'fill 0.75s cubic-bezier(.19, 1, .22, 1)',
+                        }
                     },
+
+                    ':hover': {
+                        color: 'accent',
+
+                        svg: {
+                            path: {
+                                fill: 'accent',
+                            }
+                        }
+                    }
                 },
 
                 '.project-list-item__hr': {
