@@ -32,7 +32,7 @@ const Testimonial = ({ mount, ...props }) => {
                     delay: 10000,
                 },
                 loop: true,
-                loopedSlides: 0,
+                loopedSlides: props.testimonials.length,
                 preventClicks: false,
                 preventClicksPropagation: false,
                 speed: 750,
