@@ -2,8 +2,8 @@ export default {
     breakpoints: ['576px', '768px', '992px', '1200px', '1400px'],
     useColorSchemeMediaQuery: true,
     colors: {
-        black: '#15151B',
-        blackLight: '#1C1C23',
+        black: '#000',
+        blackLight: '#101010',
         blue: '#33CCFF',
         pink: '#EE00ff',
         pinkLight: '#cc00ff',
