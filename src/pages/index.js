@@ -18,13 +18,13 @@ const PageHome = ({ data, mount, transitionStatus, ...props }) => {
             name: 'ShopTalk London',
             image: data.imageShopTalkLondon,
             role: 'WordPress Development',
-            url: 'https://58gin.com/',
+            url: 'https://shoptalklondon.com/',
         },
         {
             name: '58 Gin',
             image: data.image58Gin,
             role: 'WordPress Development',
-            url: 'https://shoptalklondon.com/',
+            url: 'https://58gin.com/',
         },
         {
             name: 'Entropy',
