@@ -19,6 +19,7 @@ const Button = (props) => {
                 background: 'none',
                 border: 'none',
                 whiteSpace: 'nowrap',
+                transition: 'color 0.25s cubic-bezier(.19, 1, .22, 1)',
 
                 '::before': {
                     content: '""',
@@ -31,7 +32,7 @@ const Button = (props) => {
                     borderStyle: 'solid',
                     borderColor: 'border',
                     borderRadius: '50%',
-                    transition: 'transform 0.75s cubic-bezier(.19, 1, .22, 1)',
+                    transition: 'border-color 0.75s cubic-bezier(.19, 1, .22, 1), transform 0.75s cubic-bezier(.19, 1, .22, 1)',
                 },
 
                 '&:focus': {
@@ -39,7 +40,10 @@ const Button = (props) => {
                 },
 
                 '&:hover': {
+                    color: 'accent',
+
                     '::before': {
+                        borderColor: 'accent',
                         transform: 'scale(1.25)'
                     },
                 },

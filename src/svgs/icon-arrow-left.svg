@@ -1,9 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="14px" height="8px" viewBox="0 0 14 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>→</title>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="icon-arrow-right" transform="translate(0.828125, 0.843750)" fill="#F4F1EC" fill-rule="nonzero">
-            <polygon id="→" transform="translate(6.265625, 3.375000) scale(-1, 1) translate(-6.265625, -3.375000) " points="9.15625 6.75 12.53125 3.375 9.15625 0 9.15625 2.796875 0 2.796875 0 3.953125 9.15625 3.953125"></polygon>
-        </g>
-    </g>
-</svg>
+<svg width="14" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M4.203 7.594L.828 4.219 4.203.844V3.64h9.156v1.156H4.203z" fill="#F4F1EC" fill-rule="nonzero"/></svg>

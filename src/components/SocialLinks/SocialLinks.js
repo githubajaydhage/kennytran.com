@@ -37,9 +37,17 @@ const SocialLinks = (props) => {
                     '&:not(:last-child)': {
                         marginRight: 5,
                     },
+
                     svg: {
                         display: 'block',
                         fill: 'text',
+                        transition: 'fill 0.75s cubic-bezier(.19, 1, .22, 1)',
+                    },
+
+                    '&:hover': {
+                        'svg': {
+                            fill: 'accent'
+                        },
                     },
                 },
             }}

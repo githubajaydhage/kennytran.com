@@ -85,6 +85,11 @@ export default {
         },
         nav: {
             variant: 'text.capitalised',
+            transition: 'color 0.75s cubic-bezier(.19, 1, .22, 1)',
+
+            ':hover': {
+                color: 'accent'
+            }
         },
         jumbotron: {
             fontSize: ['60px', '80px', '100px', '120px', '130px', '160px'],

@@ -57,7 +57,7 @@ const Testimonial = ({ mount, ...props }) => {
                         duration: 2,
                         ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
                         scaleY: '0',
-                        transformOrigin: 'bottom',
+                        transformOrigin: 'top',
                     },
                     0
                 )
@@ -135,6 +135,13 @@ const Testimonial = ({ mount, ...props }) => {
                     zIndex: '1',
                     outline: ' none',
 
+                    'svg': {
+                        'path': {
+                            fill: 'text',
+                            transition: 'fill 0.75s cubic-bezier(.19, 1, .22, 1)',
+                        }
+                    },
+
                     '::before, *': {
                         gridColumn: '1',
                         gridRow: '1',
@@ -150,11 +157,18 @@ const Testimonial = ({ mount, ...props }) => {
                         borderStyle: 'solid',
                         borderColor: 'border',
                         borderRadius: '50%',
-                        transition: 'transform 0.75s cubic-bezier(.19, 1, .22, 1)',
+                        transition: 'border-color 0.75s cubic-bezier(.19, 1, .22, 1), transform 0.75s cubic-bezier(.19, 1, .22, 1)',
                     },
 
                     ':hover': {
+                        'svg': {
+                            'path': {
+                                fill: 'accent'
+                            }
+                        },
+
                         '::before': {
+                            borderColor: 'accent',
                             transform: 'scale(1.25)'
                         }
                     },
