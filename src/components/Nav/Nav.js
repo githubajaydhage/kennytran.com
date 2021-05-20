@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { CustomEase } from 'gsap/CustomEase';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -11,7 +11,7 @@ import { jsx } from 'theme-ui';
 // Register GSAP plugins
 gsap.registerPlugin(CustomEase);
 
-const Nav = (props) => {
+const Nav = ({ navVisible, toggleNavVisible, ...props }) => {
     const navItems = [
         {
             name: 'Profile',
@@ -44,72 +44,165 @@ const Nav = (props) => {
     }, []);
 
     return (
-        <nav
-            className={'nav ' + props.className}
-            hidden={!props.navVisible}
-            sx={{
-                'body.js &': {
-                    display: [null, null, 'flex'],
-                    alignItems: 'center',
-                    height: ['100vh', null, 'auto'],
-                    padding: ['30px', null, '0'],
-                    marginLeft: 'auto',
-                    position: ['fixed', null, 'static'],
-                    top: [0, null, 'auto'],
-                    right: [0, null, 'auto'],
-                    bottom: [0, null, 'auto'],
-                    left: [0, null, 'auto'],
+        <>
+            <nav
+                className="nav"
+                sx={{
+                    'body.js &': {
+                        display: ['none', null, 'block'],
+                        marginLeft: 'auto',
 
-                    '&:not([hidden])': {
+                        ul: {
+                            display: 'flex',
+                            alignItems: 'center',
+                            padding: 0,
+                            margin: 0,
+                            listStyle: 'none',
+
+                            '& > li': {
+                                position: 'relative',
+
+                                '&:not(:last-child)': {
+                                    marginBottom: [4, null, 0],
+                                    marginRight: [0, null, 5],
+                                },
+                            },
+                        },
+
+                        a: {
+                            variant: 'text.nav',
+                            display: 'block',
+                        },
+                    },
+
+                    'body.no-js &': {
+                        display: 'block',
+                        marginLeft: 'auto',
+                    },
+                }}
+            >
+                <ul className="nav__menu">
+                    {navItems.map((navItem, index) => (
+                        <li
+                            key={index}
+                            ref={(li) => (navList.current[index] = li)}
+                        >
+                            <TransitionLinkFadeUp
+                                activeClassName="is-active"
+                                to={navItem.url}
+                            >
+                                {navItem.name}
+                            </TransitionLinkFadeUp>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+            <nav
+                className={'nav ' + `${navVisible ? 'is-open' : ''}`}
+                sx={{
+                    'body.js &': {
                         display: 'flex',
+                        alignItems: 'center',
                         flexDirection: 'column',
                         justifyContent: 'center',
-                        backgroundColor: ['muted', 'transparent'],
-                    },
-                },
+                        height: '100vh',
+                        padding: '30px',
+                        position: 'fixed',
+                        top: 0,
+                        right: 0,
+                        bottom: 0,
+                        left: 0,
+                        visibility: 'hidden',
+                        transition: 'visibility 0s linear 2s',
 
-                'body.no-js &': {
-                    display: 'block',
-                    marginLeft: 'auto',
-                },
-            }}
-        >
-            <ul
-                id="menu"
-                sx={{
-                    display: [null, null, 'flex'],
-                    alignItems: 'center',
-                    padding: 0,
-                    margin: 0,
-                    listStyle: 'none',
+                        ul: {
+                            display: 'flex',
+                            alignItems: 'center',
+                            padding: 0,
+                            margin: 0,
+                            listStyle: 'none',
 
-                    '& > li': {
-                        position: 'relative',
-                        textAlign: ['center', null, 'left'],
+                            '& > li': {
+                                position: 'relative',
+                                textAlign: 'center',
 
-                        '&:not(:last-child)': {
-                            marginBottom: [4, null, 0],
-                            marginRight: [0, null, 5],
+                                '&:not(:last-child)': {
+                                    marginBottom: 4,
+                                },
+                            },
+                        },
+
+                        a: {
+                            display: 'block',
+                            color: 'text',
+                            fontSize: 9,
+                            lineHeight: 1,
+                            opacity: 0,
+                            transform: ['translate(0, 25%)', null, 'none'],
+                            transition: [
+                                'opacity 1s cubic-bezier(.19, 1, .22, 1), transform 1s cubic-bezier(.19, 1, .22, 1)',
+                                null,
+                                'none',
+                            ],
+                        },
+
+                        '.nav__background': {
+                            position: 'absolute',
+                            top: '0',
+                            right: '0',
+                            bottom: '0',
+                            left: '0',
+                            backgroundColor: 'muted',
+                            transform: 'scaleY(0)',
+                            transformOrigin: 'top',
+                            transition:
+                                'transform 2s cubic-bezier(.19, 1, .22, 1) .25s',
+                        },
+
+                        '.nav__menu': {
+                            position: 'relative',
+                            zIndex: '1',
+                        },
+
+                        '&.is-open': {
+                            visibility: 'visible',
+                            transition: 'visibility 0s linear 0s',
+
+                            a: {
+                                opacity: ['1'],
+                                transform: 'none',
+                                transition:
+                                    'opacity 1s cubic-bezier(.19, 1, .22, 1) 0.25s, transform 1s cubic-bezier(.19, 1, .22, 1) 0.25s',
+                            },
+
+                            '.nav__background': {
+                                transform: 'scale(1)',
+                                transition:
+                                    'transform 2s cubic-bezier(.19, 1, .22, 1)',
+                            },
                         },
                     },
                 }}
             >
-                {navItems.map((navItem, index) => (
-                    <li key={index} ref={(li) => (navList.current[index] = li)}>
-                        <TransitionLinkFadeUp
-                            activeClassName="is-active"
-                            to={navItem.url}
-                            onClick={props.toggleNavVisible}
-                            sx={{
-                                variant: 'text.nav'
-                            }}
+                <ul id="menu" className="nav__menu">
+                    {navItems.map((navItem, index) => (
+                        <li
+                            key={index}
+                            ref={(li) => (navList.current[index] = li)}
                         >
-                            {navItem.name}
-                        </TransitionLinkFadeUp>
-                    </li>
-                ))}
-            </ul>
-        </nav>
+                            <TransitionLinkFadeUp
+                                activeClassName="is-active"
+                                to={navItem.url}
+                                onClick={toggleNavVisible}
+                            >
+                                {navItem.name}
+                            </TransitionLinkFadeUp>
+                        </li>
+                    ))}
+                </ul>
+                <div className="nav__background"></div>
+            </nav>
+        </>
     );
 };
 
