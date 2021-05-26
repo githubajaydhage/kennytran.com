@@ -5,6 +5,7 @@ import Footer from '../components/Footer/Footer';
 import Jumbotron from '../components/Jumbotron/Jumbotron';
 import ProjectsList from '../components/ProjectsList/ProjectsList';
 import Section from '../components/Section/Section';
+import SectionHeading from '../components/SectionHeading/SectionHeading';
 import TextSplit from '../components/TextSplit/TextSplit';
 import Testimonials from '../components/Testimonials/Testimonials';
 import SEO from '../components/SEO/SEO';
@@ -74,6 +75,15 @@ const PageHome = ({ data, mount, transitionStatus, ...props }) => {
                 <Jumbotron mount={mount} />
             </Section>
             <Section>
+                <SectionHeading
+                    sx={{
+                        position: 'absolute',
+                        top: ['-56px', null, '0'],
+                        right: ['25px', '50px', null, '20%']
+                    }}
+                    mount={mount}
+                    text="Selected Projects"
+                />
                 <ProjectsList mount={mount} projects={projects} />
             </Section>
             <Section>
