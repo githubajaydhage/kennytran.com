@@ -70,7 +70,7 @@ const PageHome = ({ data, mount, transitionStatus, ...props }) => {
 
     return (
         <>
-            <SEO title="Home" />
+            <SEO home={true} title="Freelance Web Developer based in London, UK" />
             <Section>
                 <Jumbotron mount={mount} />
             </Section>

@@ -6,7 +6,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 
 import SchemaOrg from './SchemaOrg';
 
-const SEO = ({ article, date, description, image, lang, title }) => {
+const SEO = ({ article, date, description, home, image, lang, title }) => {
     const { pathname } = useLocation();
     const { site } = useStaticQuery(query);
 
@@ -33,7 +33,7 @@ const SEO = ({ article, date, description, image, lang, title }) => {
                     lang,
                 }}
                 title={seo.title}
-                titleTemplate={`%s • ${defaultTitle}`}
+                titleTemplate={home ? `${defaultTitle} • %s` : `%s • ${defaultTitle}`}
             >
                 <meta name="description" content={seo.description} />
                 <meta name="image" content={seo.image} />
