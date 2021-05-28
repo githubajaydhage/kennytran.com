@@ -48,7 +48,7 @@ const TextSplit = ({ mount, ...props }) => {
                     y: '20px',
                     opacity: '0',
                 },
-                0
+                0.25
             );
 
             timeline.from(
@@ -70,7 +70,7 @@ const TextSplit = ({ mount, ...props }) => {
                     ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
                     height: '0%',
                 },
-                0.75
+                0
             );
         }
     }, [mount]);
