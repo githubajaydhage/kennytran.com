@@ -27,7 +27,7 @@ const Cursor = ({ path }) => {
             });
         }
 
-        var hoverItems = document.querySelectorAll('a, button, [role="button"]');
+        var hoverItems = document.querySelectorAll('a, button, [role="button"], .swiper-button');
 
         hoverItems.forEach(function (anchor) {
             anchor.addEventListener('mouseover', function hover(event) {

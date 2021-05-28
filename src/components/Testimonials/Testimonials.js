@@ -22,6 +22,8 @@ const Testimonial = ({ mount, ...props }) => {
     const contentRef = useRef(null);
     const headingRef = useRef(null);
     const sliderRef = useRef(null);
+    const sliderArrowLeftRef = useRef(null);
+    const sliderArrowRightRef = useRef(null);
 
     useEffect(() => {
         setReady(mount);
@@ -78,6 +80,26 @@ const Testimonial = ({ mount, ...props }) => {
                         duration: 2,
                         ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
                         y: '10%',
+                        opacity: '0',
+                    },
+                    0.6
+                )
+                .from(
+                    sliderArrowLeftRef.current,
+                    {
+                        duration: 2,
+                        ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
+                        x: '-100%',
+                        opacity: '0',
+                    },
+                    0.6
+                )
+                .from(
+                    sliderArrowRightRef.current,
+                    {
+                        duration: 2,
+                        ease: CustomEase.create('cubic', '.19, 1, .22, 1'),
+                        x: '100%',
                         opacity: '0',
                     },
                     0.6
@@ -238,10 +260,10 @@ const Testimonial = ({ mount, ...props }) => {
                             ))}
                         </div>
                     </div>
-                    <div className="testimonial__prev swiper-button">
+                    <div ref={sliderArrowLeftRef} className="testimonial__prev swiper-button">
                         <SVGIconArrowLeft />
                     </div>
-                    <div className="testimonial__next swiper-button">
+                    <div ref={sliderArrowRightRef} className="testimonial__next swiper-button">
                         <SVGIconArrowRight />
                     </div>
                 </div>
