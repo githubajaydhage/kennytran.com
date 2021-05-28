@@ -8,6 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Button from '../Button/Button';
 import SocialLinks from '../SocialLinks/SocialLinks';
+import TransitionLinkFadeUp from '../TransitionLinkFadeUp/TransitionLinkFadeUp';
 
 /** @jsx jsx */
 import {
@@ -33,6 +34,8 @@ const Footer = ({ mount }) => {
     const headingRef = useRef(null);
     const navRef = useRef(null);
     const socialRef = useRef(null);
+
+    let formMessage = '';
 
     useEffect(() => {
         setReady(mount);
@@ -104,6 +107,15 @@ const Footer = ({ mount }) => {
         }
     }, [mount]);
 
+    if (state.submitting) {
+        formMessage = 'Sending...';
+    } else {
+        if (state.succeeded) {
+            formMessage = 'Thank you for your message! I\'ll reply within 24 hours';
+            formRef.current.reset();
+        }
+    }
+
     return (
         <footer
             ref={footerRef}
@@ -156,11 +168,7 @@ const Footer = ({ mount }) => {
         >
             <Container>
                 <div className="footer__box">
-                    <Themed.h1 ref={headingRef}>
-                        {state.succeeded
-                            ? 'Thank you for your message'
-                            : 'Get in touch'}
-                    </Themed.h1>
+                    <Themed.h1 ref={headingRef} sx={{paddingRight: [null, null, null, 7, null, 8],}}>Ready To Start A Project Together?</Themed.h1>
                     <form ref={formRef} onSubmit={handleSubmit}>
                         <Grid
                             columns={[1, null, '1fr 1.6fr']}
@@ -230,78 +238,91 @@ const Footer = ({ mount }) => {
                                         type="submit"
                                         disabled={state.submitting}
                                     >
-                                        submit
+                                        {state.submitting
+                                            ? 'sending'
+                                            : 'submit'}
                                     </Button>
                                 </Box>
                             </Box>
                         </Grid>
+                        <div
+                            sx={{
+                                display: formMessage ? 'block' : 'none',
+                                padding: 3,
+                                marginRight: [null, null, null, 7, null, 8],
+                                marginTop: 6,
+                                backgroundColor: 'accent',
+                            }}
+                        >{formMessage}</div>
                     </form>
                     <div ref={navRef}>
-                    <Divider
-                        sx={{
-                            marginBottom: [2, 4],
-                        }}
-                    />
-                    <Grid
-                        columns={[1, null, 2]}
-                        sx={{
-                            marginBottom: 6,
-                        }}
-                    >
-                        <Box>
-                            <ul
-                                sx={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    padding: 0,
-                                    margin: 0,
-                                    listStyle: 'none',
-
-                                    '& > li': {
-                                        '&:not(:last-child)': {
-                                            marginRight: 5,
-                                        },
-                                    },
-                                }}
-                            >
-                                <li>
-                                    <Link
-                                        to="/"
-                                        sx={{
-                                            variant: 'text.nav',
-                                        }}
-                                    >
-                                        Home
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        to="/profile"
-                                        sx={{
-                                            variant: 'text.nav',
-                                        }}
-                                    >
-                                        Profile
-                                    </Link>
-                                </li>
-                            </ul>
-                        </Box>
-                        <Box
+                        <Divider
                             sx={{
-                                paddingRight: [null, null, null, null, 7],
+                                marginBottom: [2, 4],
+                            }}
+                        />
+                        <Grid
+                            columns={[1, null, 2]}
+                            sx={{
+                                marginBottom: 6,
                             }}
                         >
-                            <p
+                            <Box>
+                                <ul
+                                    sx={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        padding: 0,
+                                        margin: 0,
+                                        listStyle: 'none',
+
+                                        '& > li': {
+                                            '&:not(:last-child)': {
+                                                marginRight: 5,
+                                            },
+                                        },
+                                    }}
+                                >
+                                    <li>
+                                        <TransitionLinkFadeUp
+                                            activeClassName="is-active"
+                                            to="/"
+                                            sx={{
+                                                variant: 'text.nav',
+                                            }}
+                                        >
+                                            Home
+                                        </TransitionLinkFadeUp>
+                                    </li>
+                                    <li>
+                                        <TransitionLinkFadeUp
+                                            activeClassName="is-active"
+                                            to="/profile"
+                                            sx={{
+                                                variant: 'text.nav',
+                                            }}
+                                        >
+                                            Profile
+                                        </TransitionLinkFadeUp>
+                                    </li>
+                                </ul>
+                            </Box>
+                            <Box
                                 sx={{
-                                    fontSize: [0, 1],
+                                    paddingRight: [null, null, null, null, 7],
                                 }}
                             >
-                                Copyright &copy; 2021 Kenny Tran Co Ltd.
-                                Registered in England and Wales. Company number
-                                12716945.
-                            </p>
-                        </Box>
-                    </Grid>
+                                <p
+                                    sx={{
+                                        fontSize: [0, 1],
+                                    }}
+                                >
+                                    Copyright &copy; 2021 Kenny Tran Co Ltd.
+                                    Registered in England and Wales. Company
+                                    number 12716945.
+                                </p>
+                            </Box>
+                        </Grid>
                     </div>
                     <Box ref={socialRef}>
                         <SocialLinks />
