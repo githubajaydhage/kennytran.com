@@ -25,6 +25,14 @@ module.exports = {
     },
     plugins: [
         'gatsby-plugin-gatsby-cloud',
+        {
+            resolve: `gatsby-plugin-google-gtag`,
+            options: {
+                trackingIds: [
+                    'G-0CSKQ4VH54',
+                ],
+            },
+        },
         'gatsby-plugin-image',
         {
             resolve: 'gatsby-plugin-manifest',
