@@ -4,7 +4,7 @@ export default {
     colors: {
         black: '#000',
         blackLight: '#101010',
-        blue: '#33CCFF',
+        blue: '#4646fe',
         pink: '#EE00ff',
         pinkLight: '#cc00ff',
         purpleDark: '#29112c',
@@ -31,7 +31,7 @@ export default {
     },
     lineHeights: {
         body: 1.5,
-        heading: 1.15,
+        heading: 1.3,
     },
     forms: {
         input: {

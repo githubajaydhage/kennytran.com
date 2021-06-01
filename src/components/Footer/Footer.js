@@ -36,6 +36,8 @@ const Footer = ({ mount }) => {
     const socialRef = useRef(null);
     let formHeading = '';
 
+    let formMessage = '';
+
     useEffect(() => {
         setReady(mount);
         if (mount) {
@@ -107,13 +109,11 @@ const Footer = ({ mount }) => {
     }, [mount]);
 
     if (state.submitting) {
-        formHeading = 'Sending...';
+        formMessage = 'Sending...';
     } else {
         if (state.succeeded) {
-            formHeading = 'Thank you for your message';
+            formMessage = 'Thank you for your message! I\'ll reply within 24 hours';
             formRef.current.reset();
-        } else {
-            formHeading = 'Get in touch';
         }
     }
 
@@ -169,7 +169,7 @@ const Footer = ({ mount }) => {
         >
             <Container>
                 <div className="footer__box">
-                    <Themed.h1 ref={headingRef}>{formHeading}</Themed.h1>
+                    <Themed.h1 ref={headingRef} sx={{paddingRight: [null, null, null, 7, null, 8],}}>Ready To Start A Project Together?</Themed.h1>
                     <form ref={formRef} onSubmit={handleSubmit}>
                         <Grid
                             columns={[1, null, '1fr 1.6fr']}
@@ -246,6 +246,15 @@ const Footer = ({ mount }) => {
                                 </Box>
                             </Box>
                         </Grid>
+                        <div
+                            sx={{
+                                display: formMessage ? 'block' : 'none',
+                                padding: 3,
+                                marginRight: [null, null, null, 7, null, 8],
+                                marginTop: 6,
+                                backgroundColor: 'accent',
+                            }}
+                        >{formMessage}</div>
                     </form>
                     <div ref={navRef}>
                         <Divider
